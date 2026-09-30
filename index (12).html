@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>مخطط الدرس السريع</title>
+<style>
+:root{
+  --navy:#162A63;--navy2:#213B7A;--teal:#17B7B1;--violet:#6042B6;
+  --ink:#172033;--muted:#657089;--line:#E4E9F2;--soft:#F6F8FC;--white:#fff;
+  --ok:#168B66;--warn:#B26A00;--danger:#B63E55;--shadow:0 14px 36px rgba(22,42,99,.10)
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#F7F9FD,#EEF3FA);color:var(--ink);font-family:Tahoma,Arial,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:1320px;margin:auto;min-height:100vh}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px}
+.brand h1{margin:0;color:var(--navy);font-size:18px}.brand p{margin:3px 0 0;font-size:11px;color:var(--muted)}
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:#fff;color:var(--navy);padding:9px 12px;border-radius:12px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,var(--navy),var(--violet));color:#fff;border:0}
+.btn.teal{background:linear-gradient(135deg,var(--teal),#0A9EA3);color:#fff;border:0}
+.hero{margin:20px;border-radius:25px;padding:24px;background:linear-gradient(125deg,var(--navy),var(--navy2) 55%,var(--violet));color:#fff;box-shadow:var(--shadow)}
+.hero h2{margin:5px 0 8px;font-size:28px}.hero p{margin:0;line-height:1.8;color:rgba(255,255,255,.88)}
+.guide{margin:0 20px 18px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.guide-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;background:linear-gradient(90deg,#F4F8FD,#F7FBFB)}
+.guide-head h3{margin:0;color:var(--navy);font-size:18px}
+.guide-head p{margin:3px 0 0;color:var(--muted);font-size:11px}
+.guide-toggle{border:1px solid var(--line);background:#fff;color:var(--navy);padding:7px 10px;border-radius:10px;font-weight:700}
+.guide-body{padding:18px}
+.guide-intro{padding:12px 14px;border-radius:13px;background:#F3FBFA;border:1px solid #CFEDE9;color:#245E59;font-size:12px;line-height:1.8;margin-bottom:14px}
+.guide-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.guide-step{border:1px solid var(--line);border-radius:15px;padding:13px;background:#FCFDFE}
+.guide-step .n{width:30px;height:30px;border-radius:9px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;margin-bottom:8px}
+.guide-step h4{margin:0 0 7px;color:var(--navy);font-size:13px}
+.guide-step p{margin:5px 0;font-size:11px;line-height:1.7;color:#4C5870}
+.guide-step b{color:#27344F}
+.guide-source{margin-top:8px;padding:8px 9px;border-radius:10px;background:#F6F8FC;border:1px solid var(--line);font-size:10px;line-height:1.6;color:#667188}
+.guide-result{margin-top:14px;padding:13px 14px;border-radius:13px;background:#FFF8EA;border:1px solid #F0DDB7;color:#76520E;font-size:11px;line-height:1.8}
+
+.layout{display:grid;grid-template-columns:250px 1fr;gap:18px;padding:0 20px 28px}
+.sidebar{position:sticky;top:78px;align-self:start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:11px;box-shadow:var(--shadow)}
+.navbtn{width:100%;border:0;background:transparent;text-align:right;padding:12px;border-radius:12px;font-weight:700;color:#566176;margin:3px 0}
+.navbtn.active{background:#EEF4FB;color:var(--navy)}
+.score{margin-top:12px;padding:13px;background:var(--soft);border-radius:14px}
+.meter{height:8px;background:#E5EAF2;border-radius:999px;overflow:hidden}.meter div{height:100%;background:linear-gradient(90deg,var(--teal),var(--violet));width:0}
+.main{min-width:0}.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--shadow)}.panel.active{display:block}
+h3{color:var(--navy);margin:0 0 5px}.sub{color:var(--muted);font-size:12px;line-height:1.7;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}.c2{grid-column:span 2}
+.field label{display:block;font-size:12px;font-weight:700;color:#4C5870;margin-bottom:5px}
+input,select,textarea{width:100%;border:1px solid #DCE3EE;border-radius:11px;padding:10px 11px;outline:none;background:#fff}
+textarea{min-height:75px;resize:vertical;line-height:1.6}.ltopic{min-height:110px;font-size:14px}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(23,183,177,.1)}
+.card{border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0;background:#FCFDFE}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:700;background:#EEF3FF;color:var(--navy)}
+.iconbtn{border:0;background:#FFF0F3;color:var(--danger);width:30px;height:30px;border-radius:9px;font-weight:900}
+.preview{padding:12px 14px;background:#F6FBFB;border-right:4px solid var(--teal);border-radius:10px;margin-top:10px;font-size:13px;line-height:1.7}
+.quick{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}.chip{padding:6px 9px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:11px;color:#4D5970}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.kpi{min-width:130px;padding:10px 12px;background:var(--soft);border:1px solid var(--line);border-radius:13px}.kpi b{display:block;color:var(--navy);font-size:19px}.kpi span{font-size:10px;color:var(--muted)}
+.check{display:flex;gap:8px;padding:8px 0}.check input{width:auto;margin-top:3px}.check label{font-size:12px;line-height:1.6}
+.output{border:1px solid var(--line);border-radius:18px;overflow:hidden}.outhead{background:linear-gradient(120deg,var(--navy),var(--violet));color:#fff;padding:20px}.outbody{padding:18px}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.meta div{padding:9px;background:var(--soft);border:1px solid var(--line);border-radius:10px}.meta b{display:block;font-size:10px;color:var(--muted);margin-bottom:3px}.meta span{font-size:12px;font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:12px}th,td{border:1px solid var(--line);padding:8px;vertical-align:top}th{background:#F0F4FA;color:var(--navy)}
+.rights{margin-top:16px;padding-top:10px;border-top:1px solid var(--line);font-size:10px;color:#70798B;line-height:1.7}
+.note{padding:11px 13px;border-radius:12px;background:#FFF8EA;border:1px solid #F0DDB7;color:#7A5510;font-size:11px;line-height:1.6}
+.hidden{display:none!important}
+@media(max-width:900px){.guide-grid{grid-template-columns:1fr 1fr}.layout{grid-template-columns:1fr}.sidebar{position:static;display:grid;grid-template-columns:1fr 1fr}.score{grid-column:1/-1}.c8,.c6,.c4,.c3,.c2{grid-column:span 12}.meta{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.guide{margin:0 12px 14px}.guide-grid{grid-template-columns:1fr}.guide-head{align-items:flex-start}.topbar-inner{flex-direction:column;align-items:flex-start}.hero{margin:12px;padding:18px}.hero h2{font-size:23px}.layout{padding:0 12px 20px}.panel{padding:14px}.sidebar{grid-template-columns:1fr 1fr}.meta{grid-template-columns:1fr}.rights{text-align:center}}
+@media print{
+  @page{size:A4;margin:9mm}
+  html,body{background:#fff!important;font-size:10pt}
+  .topbar,.hero,.guide,.sidebar,.no-print,.top-rights{display:none!important}
+  .layout{display:block!important;padding:0!important}
+  .panel{display:none!important;border:0!important;box-shadow:none!important}
+  .panel#result{display:block!important;padding:0!important}
+  .output{border:0!important;margin:0!important;box-shadow:none!important}
+  body.print-student #qualityDocument{display:none!important}
+  body.print-quality #studentDocument{display:none!important}
+  body.print-student #studentDocument,
+  body.print-quality #qualityDocument{display:block!important}
+  .outhead{padding:9px 12px!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .outhead h2{font-size:16pt!important}
+  .outbody{padding:7px 2px!important}
+  .doc-brand{padding:6px 10px!important;margin:0 0 7px!important;border-radius:8px!important}
+  .doc-brand img{width:125px!important;max-width:26%!important;max-height:48px!important;object-fit:contain}
+  .doc-brand .brand-text strong{font-size:13pt!important}
+  .doc-brand .brand-text span{font-size:8.5pt!important}
+  .meta{grid-template-columns:repeat(3,1fr)!important;gap:4px!important}
+  .meta div{padding:5px 7px!important;border-radius:6px!important}
+  .meta b{font-size:7.5pt!important;margin-bottom:1px!important}
+  .meta span{font-size:9pt!important}
+  .kpis{gap:5px!important;margin:7px 0!important}
+  .kpi{min-width:0!important;flex:1;padding:5px 7px!important;border-radius:7px!important}
+  .kpi b{font-size:13pt!important}
+  .kpi span{font-size:7.5pt!important}
+  h3{font-size:11pt!important;margin:8px 0 4px!important;page-break-after:avoid}
+  table{font-size:8.5pt!important;line-height:1.35}
+  th,td{padding:4px 5px!important}
+  tr{break-inside:avoid;page-break-inside:avoid}
+  .preview,.note{padding:6px 8px!important;margin-top:5px!important;font-size:8.5pt!important;line-height:1.45!important}
+  .rights{margin-top:7px!important;padding-top:5px!important;font-size:7.5pt!important;line-height:1.4!important}
+  .print-block{margin-top:7px!important;break-inside:auto;page-break-inside:auto}
+  .avoid-break{break-inside:avoid;page-break-inside:avoid}
+  ul{margin:4px 0!important;padding-right:18px!important}
+  li{margin:1px 0!important}
+}
+.site-rights{
+  margin:18px 20px 28px;
+  padding:14px 16px;
+  text-align:center;
+  color:#5f6878;
+  font-size:11px;
+  line-height:1.8;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:0 8px 22px rgba(22,42,99,.06)
+}
+.site-rights strong{color:var(--navy)}
+@media(max-width:600px){.site-rights{margin:14px 12px 20px}}
+@media print{.site-rights{display:none!important}}
+.top-rights{
+  margin:10px 20px 0;
+  padding:10px 14px;
+  background:#F4F8FD;
+  border:1px solid var(--line);
+  border-radius:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px 14px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#5f6878;
+  font-size:11px;
+  line-height:1.7;
+}
+.top-rights strong{color:var(--navy)}
+.top-rights span{white-space:nowrap}
+@media(max-width:600px){
+  .top-rights{margin:10px 12px 0;display:block}
+  .top-rights span{display:block;white-space:normal}
+}
+@media print{.top-rights{display:none!important}}
+
+.doc-brand{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 18px;margin-bottom:14px;border:1px solid var(--line);
+  border-radius:14px;background:#fff;
+}
+.doc-brand img{width:230px;max-width:44%;height:auto;display:block;border-radius:8px}
+.doc-brand .brand-text{flex:1;text-align:center;line-height:1.65}
+.doc-brand .brand-text strong{display:block;color:var(--navy);font-size:17px}
+.doc-brand .brand-text span{display:block;color:var(--muted);font-size:11px}
+@media(max-width:600px){
+  .doc-brand{flex-direction:column}
+  .doc-brand img{max-width:90%;width:260px}
+}
+@media print{
+  .doc-brand{break-inside:avoid}
+}
+
+.q-outcome-card{border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:#FCFDFE;break-inside:avoid;page-break-inside:avoid}
+.q-outcome-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.q-outcome-head strong{color:var(--navy);font-size:13px}
+.q-mini-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:6px}
+.q-item{grid-column:span 4;border:1px solid var(--line);background:#fff;border-radius:9px;padding:6px 7px;min-width:0}
+.q-item.w6{grid-column:span 6}.q-item.w8{grid-column:span 8}.q-item.w12{grid-column:span 12}
+.q-item b{display:block;font-size:8.5px;color:var(--muted);margin-bottom:2px}.q-item span{display:block;font-size:10.5px;font-weight:700;line-height:1.45;word-break:break-word}
+@media print{
+  .q-outcome-card{padding:6px!important;margin:5px 0!important;border-radius:8px!important}
+  .q-outcome-head{margin-bottom:4px!important}
+  .q-outcome-head strong{font-size:9.5pt!important}
+  .q-mini-grid{gap:3px!important}
+  .q-item{padding:4px 5px!important;border-radius:5px!important}
+  .q-item b{font-size:6.8pt!important}.q-item span{font-size:8.2pt!important;line-height:1.3!important}
+  body.print-student .outbody, body.print-quality .outbody{width:100%!important;max-width:none!important}
+  body.print-student .output, body.print-quality .output{width:100%!important;max-width:none!important;overflow:visible!important}
+  body.print-student table, body.print-quality table{width:100%!important;table-layout:fixed!important}
+  body.print-student th, body.print-student td{word-break:break-word!important}
+  body.print-quality th, body.print-quality td{word-break:break-word!important}
+}
+
+
+
+/* Direct PDF export surface - isolated from the application layout */
+.pdf-export-host{
+  position:fixed!important;left:-100000px!important;top:0!important;
+  width:190mm!important;background:#fff!important;color:#172033!important;
+  direction:rtl!important;z-index:-1!important;padding:0!important;margin:0!important;
+}
+.pdf-export-host .output{
+  width:190mm!important;max-width:190mm!important;margin:0!important;border:0!important;
+  border-radius:0!important;overflow:visible!important;box-shadow:none!important;background:#fff!important;
+}
+.pdf-export-host .outhead{padding:10px 13px!important}
+.pdf-export-host .outhead h2{font-size:19px!important}
+.pdf-export-host .outbody{padding:8px 0!important}
+.pdf-export-host .doc-brand{padding:7px 10px!important;margin:0 0 7px!important;border-radius:8px!important}
+.pdf-export-host .doc-brand img{width:130px!important;max-width:25%!important;max-height:50px!important;object-fit:contain!important}
+.pdf-export-host .doc-brand .brand-text strong{font-size:15px!important}
+.pdf-export-host .doc-brand .brand-text span{font-size:9px!important}
+.pdf-export-host .meta{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important}
+.pdf-export-host .meta div{padding:5px 7px!important;border-radius:6px!important;min-width:0!important}
+.pdf-export-host .meta b{font-size:8px!important;margin-bottom:1px!important}
+.pdf-export-host .meta span{font-size:10px!important;overflow-wrap:anywhere!important}
+.pdf-export-host .kpis{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;margin:7px 0!important}
+.pdf-export-host .kpi{min-width:0!important;padding:5px 7px!important;border-radius:7px!important}
+.pdf-export-host .kpi b{font-size:14px!important}
+.pdf-export-host .kpi span{font-size:8px!important}
+.pdf-export-host h3{font-size:13px!important;margin:8px 0 4px!important}
+.pdf-export-host table{width:100%!important;table-layout:fixed!important;font-size:9px!important;line-height:1.32!important;border-collapse:collapse!important}
+.pdf-export-host th,.pdf-export-host td{padding:4px 5px!important;overflow-wrap:anywhere!important;word-break:normal!important}
+.pdf-export-host tr,.pdf-export-host .q-outcome-card,.pdf-export-host .doc-brand{break-inside:avoid!important;page-break-inside:avoid!important}
+.pdf-export-host .q-outcome-card{padding:7px!important;margin:5px 0!important;border-radius:8px!important}
+.pdf-export-host .q-mini-grid{gap:3px!important}
+.pdf-export-host .q-item{padding:4px 5px!important;font-size:8px!important;line-height:1.35!important}
+.pdf-export-host .q-item b{font-size:7px!important}
+.pdf-export-host .preview,.pdf-export-host .note{padding:6px 8px!important;margin-top:5px!important;font-size:9px!important;line-height:1.42!important}
+.pdf-export-host .rights{margin-top:7px!important;padding-top:5px!important;font-size:8px!important;line-height:1.4!important}
+.pdf-export-host .print-block{margin-top:7px!important}
+.pdf-export-host ul{margin:4px 0!important;padding-right:18px!important}
+.pdf-export-host li{margin:1px 0!important}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+<div class="topbar-inner">
+  <div class="brand">
+    <h1>مخطط الدرس السريع</h1>
+  </div>
+  <div class="actions no-print">
+    <button class="btn" onclick="saveDraft()">حفظ مسودة</button>
+    <button class="btn teal" onclick="showPanel('result')">معاينة</button>
+    <button class="btn teal" onclick="printStudent()">حفظ PDF الطالب</button>
+    <button class="btn primary" onclick="printQuality()">حفظ PDF الجودة</button>
+  </div>
+</div>
+</header>
+
+<div class="top-rights">
+  <strong>إعداد وتصميم: نور أحمد الزهراني</strong>
+  <span>جميع حقوق تصميم وإعداد الأداة محفوظة.</span>
+</div>
+
+
+<section class="hero">
+<h2>أداة توليد تلقائي لخطة الدرس</h2>
+</section>
+
+<section class="guide no-print" id="userGuide">
+  <div class="guide-head">
+    <div>
+      <h3>كيف تستخدم الأداة لأول مرة؟</h3>
+      <p>دليل سريع: ماذا تعبئ، ومن أين تستقي المعلومة، وماذا ستحصل عليه في النهاية.</p>
+    </div>
+    <button class="guide-toggle" id="guideToggle" onclick="toggleGuide()">إخفاء الدليل</button>
+  </div>
+
+  <div class="guide-body" id="guideBody">
+    <div class="guide-intro">
+      <strong>قبل أن تبدأ:</strong>
+      افتح <strong>توصيف المقرر المعتمد</strong> وخطة توزيع المحتوى/الأسابيع، ثم جهّز عنوان درس اليوم ومدته.
+      لا تحتاج إلى كتابة تقرير جودة منفصل؛ الأداة تحسب صفحة الجودة تلقائيًا من نفس البيانات.
+    </div>
+
+    <div class="guide-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="guide-step">
+        <div class="n">1</div>
+        <h4>معلومات الدرس</h4>
+        <p>اكتب اسم البرنامج أو الدبلوم، والمقرر، والأسبوع، وعنوان الدرس، والمدة، واسم عضو/عضوة هيئة التدريس.</p>
+        <div class="guide-source"><b>مصدر المعلومات:</b><br>الخطة الدراسية وتوصيف المقرر المعتمد.</div>
+      </div>
+      <div class="guide-step">
+        <div class="n">2</div>
+        <h4>ناتج التعلم</h4>
+        <p>اختر رمز CLO والفعل، ثم اكتب فقط جزء المحتوى الذي يخدمه درس اليوم.</p>
+        <div class="guide-source"><b>الأداة تساعدك:</b><br>تقترح الاستراتيجية والنشاط والتقويم ودليل الجودة تلقائيًا.</div>
+      </div>
+      <div class="guide-step">
+        <div class="n">3</div>
+        <h4>خطة المحاضرة</h4>
+        <p>اضغط «إنشاء خطة زمنية مقترحة» ثم عدّل ما تحتاجه فقط.</p>
+        <div class="guide-source"><b>بعد التنفيذ:</b><br>افتح قسم النتائج فقط إذا أردت استكمال التحليل والتحسين.</div>
+      </div>
+    </div>
+
+    <div class="guide-result">
+      <strong>ما الناتج النهائي؟</strong><br>
+      تنتج الأداة ملفين منفصلين بصيغة PDF:
+      <strong>ملف الطالب</strong> ويشمل نواتج التعلم وخطة التنفيذ والأنشطة والتقويم،
+      و<strong>ملف الجودة</strong> ويشمل المواءمة والتوثيق والحضور والغياب والزمن والاستيفاء الآلي والتوصية.
+      لا يحتاج عضو/عضوة هيئة التدريس إلى إعداد ملف الجودة يدويًا.
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+<aside class="sidebar no-print">
+  <button class="navbtn active" data-p="basic" onclick="showPanel('basic')">1. معلومات الدرس</button>
+  <button class="navbtn" data-p="los" onclick="showPanel('los')">2. ماذا سيتعلم الطالب؟</button>
+  <button class="navbtn" data-p="plan" onclick="showPanel('plan')">3. خطة المحاضرة</button>
+  <button class="navbtn" data-p="result" onclick="showPanel('result')">4. إنشاء الملفات</button>
+  <div class="score"><div style="display:flex;justify-content:space-between"><b>اكتمال الخطة قبل التنفيذ</b><b id="scoreText">0%</b></div><div class="meter"><div id="scoreBar"></div></div></div>
+</aside>
+
+<main class="main">
+<section class="panel active" id="basic">
+<h3>1. معلومات الدرس</h3>
+<p class="sub">معلومات أساسية مختصرة فقط، والباقي تتولى الأداة تنظيمه.</p>
+<div class="grid">
+  <div class="field c6"><label>البرنامج / الدبلوم</label><input id="program" placeholder="مثال: دبلوم إدارة الأعمال"></div>
+  <div class="field c6"><label>المقرر</label><input id="course" placeholder="مثال: إدارة المخاطر"></div>
+  <div class="field c3"><label>الأسبوع</label><input id="week" placeholder="الأسبوع الرابع"></div>
+  <div class="field c3"><label>مدة المحاضرة</label><select id="duration">
+    <option value="60">ساعة واحدة</option>
+    <option value="120">ساعتان</option>
+    <option value="180" selected>3 ساعات</option>
+    <option value="240">4 ساعات</option>
+    <option value="300">5 ساعات</option>
+  </select></div>
+  <div class="field c8"><label>عنوان الدرس</label><input id="title" placeholder="عنوان الدرس"></div>
+  <div class="field c4"><label>عضو/عضوة هيئة التدريس</label><input id="instructor" placeholder="الاسم"></div>
+  <div class="field c6"><label>مصدر التعلم الرئيسي</label>
+    <select id="resource"><option>شرائح المحاضرة</option><option>الكتاب</option></select>
+  </div>
+  <div class="field c6">
+    <label>المعرفة السابقة <span style="font-weight:400;color:var(--muted)">(اختياري)</span></label>
+    <select id="prior">
+      <option value="">لا يوجد / لا يلزم</option>
+      <option>مراجعة مفاهيم الدرس السابق</option>
+      <option>معرفة تعريفات أساسية مرتبطة بالموضوع</option>
+      <option>إكمال قراءة أو مشاهدة مادة قبلية</option>
+    </select>
+  </div>
+</div>
+<div style="margin-top:14px;text-align:left">
+  <button class="btn teal" onclick="showPanel('los')">التالي: نواتج التعلم ←</button>
+</div>
+</section>
+
+<section class="panel" id="los">
+<h3>2. ماذا سيتعلم الطالب؟</h3>
+<p class="sub">اختر CLO والفعل واكتب المحتوى فقط؛ الأداة تقترح بقية عناصر المواءمة تلقائيًا ويمكن تعديلها.</p>
+<div class="note" style="margin-bottom:12px">
+  تتضمن قائمة الأفعال الأفعال الواردة في توصيفات المقررات المستخدمة في الأداة، بما فيها أفعال المعرفة والمهارات والقيم. اختر الفعل كما ورد في ناتج التعلم المعتمد.
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+  <div>
+    <b style="color:var(--navy)">نواتج الدرس</b>
+    <div style="font-size:10px;color:var(--muted);margin-top:3px">أضف فقط النواتج التي يخدمها هذا الدرس فعليًا.</div>
+  </div>
+  <button class="btn teal" onclick="addLO()">＋ إضافة ناتج</button>
+</div>
+<div id="loList"></div>
+<div class="note">
+  <strong>لتوفير الوقت:</strong> عند تغيير الفعل، تقترح الأداة تلقائيًا استراتيجية تدريس ونشاطًا وتقويمًا وأداة تصحيح ودليل جودة مناسبًا. ويمكن تعديل أي اقتراح.
+</div>
+<div style="margin-top:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+  <button class="btn" onclick="showPanel('basic')">→ السابق</button>
+  <button class="btn teal" onclick="showPanel('plan')">التالي: خطة المحاضرة ←</button>
+</div>
+</section>
+
+<section class="panel" id="plan">
+<h3>3. خطة المحاضرة</h3>
+<p class="sub">ابدأ بالخطة الزمنية المقترحة ثم عدّل ما تحتاجه فقط.</p>
+
+<div class="card" style="background:#F4FBFA;border-color:#CBECE8">
+  <div class="card-head">
+    <div>
+      <span class="badge">توفير الوقت</span>
+      <b style="color:var(--navy);margin-right:7px">خطة زمنية تلقائية</b>
+    </div>
+  </div>
+  <p class="sub" style="margin-bottom:10px">تنشئ الأداة مراحل مناسبة تلقائيًا حسب مدة المحاضرة، مع احتساب الاستراحة. يمكنك تعديل أي مرحلة بعد إنشائها.</p>
+  <button class="btn teal" onclick="applyPlanTemplate()">⚡ إنشاء خطة زمنية مقترحة</button>
+</div>
+
+<div id="actList"></div>
+<button class="btn" onclick="addActivity()">＋ إضافة مرحلة يدويًا</button>
+
+<div class="kpis">
+  <div class="kpi"><b id="mins">0</b><span>إجمالي الدقائق</span></div>
+  <div class="kpi"><b id="diff">0</b><span>الفرق عن مدة المحاضرة</span></div>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <div class="card-head"><span class="badge">الاستراحة</span></div>
+  <div class="grid">
+    <div class="field c6">
+      <label>طريقة توزيع 30 دقيقة</label>
+      <select id="breakMode" onchange="toggleBreakCustom();updateAll()">
+        <option value="single">30 دقيقة متصلة</option>
+        <option value="3x10">3 × 10 دقائق</option>
+        <option value="2x15">2 × 15 دقيقة</option>
+        <option value="flex" selected>توزيع مرن بإجمالي 30 دقيقة</option>
+        <option value="0">بدون استراحة</option>
+      </select>
+    </div>
+    <div class="field c6 hidden" id="breakCustomWrap">
+      <label>التوزيع المرن <span style="font-weight:400;color:var(--muted)">(اختياري)</span></label>
+      <input id="breakCustom" placeholder="مثال: 10 + 5 + 15" oninput="updateAll()">
+    </div>
+  </div>
+</div>
+
+<details class="card" style="margin-top:16px">
+  <summary style="cursor:pointer;font-weight:800;color:var(--navy)">أثناء التنفيذ: الحضور والغياب</summary>
+  <div class="grid" style="margin-top:12px">
+    <div class="field c3"><label>المسجلون</label><input id="studentsTotal" type="number" min="0" placeholder="0" oninput="updateAttendance();updateAll()"></div>
+    <div class="field c3"><label>الحضور</label><input id="studentsPresent" type="number" min="0" placeholder="0" oninput="updateAttendance();updateAll()"></div>
+    <div class="field c3"><label>الغياب</label><input id="studentsAbsent" type="number" readonly placeholder="0"></div>
+    <div class="field c3"><label>نسبة الحضور</label><input id="attendanceRate" readonly placeholder="0%"></div>
+    <div class="field c6"><label>طريقة التحضير</label>
+      <select id="attendanceMethod"><option>Teams</option><option>LMS / نظام إدارة التعلم</option><option>سجل حضور إلكتروني</option><option>سجل حضور يدوي</option><option>أخرى</option></select>
+    </div>
+    <div class="field c6"><label>ملاحظات <span style="font-weight:400;color:var(--muted)">(اختياري)</span></label><input id="attendanceNote" placeholder="مثال: تأخر طالبان"></div>
+  </div>
+</details>
+
+<details class="card" style="margin-top:12px">
+  <summary style="cursor:pointer;font-weight:800;color:var(--navy)">خيارات التوثيق والجودة</summary>
+  <div class="grid" style="margin-top:12px">
+    <div class="field c6"><label>مكان حفظ الدليل</label>
+      <select id="store"><option>LMS / نظام إدارة التعلم</option><option>ملف أدلة المقرر</option><option>Teams</option><option>Microsoft Forms</option><option>ملف الجودة</option></select>
+    </div>
+    <div class="field c6"><label>التغذية الراجعة</label>
+      <select id="feedback"><option>فورية أثناء الدرس</option><option>تلقائية بعد الاختبار</option><option>تعليق مكتوب مختصر</option><option>Rubric / سلم تقدير</option><option>مناقشة جماعية</option></select>
+    </div>
+  </div>
+</details>
+
+<h3 style="margin-top:18px">التحقق الآلي</h3>
+<div class="kpis" style="margin-top:8px">
+  <div class="kpi"><b id="autoQualityScore">0%</b><span>استيفاء ما قبل التنفيذ</span></div>
+  <div class="kpi"><b id="autoQualityStatus">—</b><span>حالة الخطة</span></div>
+</div>
+
+<div style="margin-top:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+  <button class="btn" onclick="showPanel('los')">→ السابق</button>
+  <button class="btn primary" onclick="showPanel('result')">إنشاء الملفات ←</button>
+</div>
+</section>
+
+<section class="panel" id="result">
+<div class="actions no-print" style="margin-bottom:12px">
+  <button class="btn" onclick="copyStudentText()">نسخ ملف الطالب</button>
+  <button class="btn teal" onclick="printStudent()">حفظ PDF الطالب</button>
+  <button class="btn primary" onclick="printQuality()">حفظ PDF الجودة</button>
+</div>
+
+<article class="output print-doc" id="studentDocument">
+  <div class="outhead">
+    <h2 id="outTitle" style="margin:0 0 5px">خطة الدرس للطالب</h2>
+    <div style="font-size:12px;opacity:.85">مخرج تعليمي مبسط للطالب</div>
+  </div>
+  <div class="outbody" id="studentOutputBody"></div>
+</article>
+
+<article class="output print-doc" style="margin-top:16px" id="qualityDocument">
+  <div class="outhead">
+    <h2 style="margin:0 0 5px">ملف متطلبات الجودة</h2>
+    <div style="font-size:12px;opacity:.85">المواءمة · التقييم · التوثيق · الاستيفاء</div>
+  </div>
+  <div class="outbody" id="qualityOutputBody"></div>
+</article>
+</section>
+</main>
+</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id), val=id=>($(id)?.value||'').trim();
+function toggleGuide(){
+  const body=$('guideBody'), btn=$('guideToggle');
+  const hidden=body.classList.toggle('hidden');
+  btn.textContent=hidden?'إظهار طريقة الاستخدام':'إخفاء الدليل';
+  localStorage.setItem('lessonPlannerGuideHidden', hidden?'1':'0');
+}
+let loN=0, actN=0;
+
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.navbtn').forEach(x=>x.classList.remove('active'));
+  $(id).classList.add('active');
+  document.querySelector(`.navbtn[data-p="${id}"]`)?.classList.add('active');
+  if(id==='result') render();
+  window.scrollTo({top:70,behavior:'smooth'});
+}
+function codeOptions(sel=''){
+  const codes=['م1','م2','م3','م4','ع1','ع2','ع3','ع4','ق1','ق2','ق3'];
+  return codes.map(x=>`<option ${x===sel?'selected':''}>${x}</option>`).join('');
+}
+function verbOptions(sel=''){
+  const groups={
+    'المعرفة والفهم':[
+      'يعرّف','يشرح','يوضح','يصف','يحدد','يميز','يصنف'
+    ],
+    'التطبيق والمهارات':[
+      'يطبق','يستخدم','ينفذ','يعد','يتقن','يقوم بـ'
+    ],
+    'التحليل والحكم':[
+      'يحلل','يقارن','يقيم','يقيّم','يختار','يقترح'
+    ],
+    'الإنشاء والتطوير':[
+      'يطور','يصمم'
+    ],
+    'القيم والاستقلالية والمسؤولية':[
+      'يلتزم','يبدي','يظهر'
+    ]
+  };
+  return Object.entries(groups).map(([g,arr])=>
+    `<optgroup label="${g}">${arr.map(x=>`<option value="${x}" ${x===sel?'selected':''}>${x}</option>`).join('')}</optgroup>`
+  ).join('');
+}
+const SPEC_ASSESSMENTS=[
+  'الاختبارات الإلكترونية',
+  'الأنشطة والواجبات عبر الإنترنت',
+  'المقابلات الافتراضية',
+  'المشروعات البحثية الإلكترونية',
+  'الاستبانات الإلكترونية',
+  'عروض الطلاب',
+  'كتابة التقارير',
+  'المشاريع الجماعية',
+  'عروض الطلاب المهنية',
+  'الاختبارات الشفهية',
+  'عروض الطلاب التفاعلية',
+  'المشروعات الجماعية الإلكترونية',
+  'المشاركة في الفعاليات العلمية',
+  'الواجبات والتكاليف',
+  'اختبارات قصيرة',
+  'اختبار نصفي',
+  'أبحاث أو مشاريع المجموعات والعروض التفاعلية',
+  'اختبار نهائي',
+  'اختبار تحريري',
+  'شفهي',
+  'عرض تقديمي',
+  'مشروع جماعي',
+  'ورقة عمل'
+];
+
+function assessmentSource(a){
+  return SPEC_ASSESSMENTS.includes(a) ? 'وارد في توصيف المقرر' : 'أداة إضافية مقترحة';
+}
+
+
+function strategyOptions(sel=''){
+  const groups={
+    'بناء المعرفة والفهم':[
+      'محاضرة تفاعلية',
+      'حوار ومناقشة',
+      'عصف ذهني',
+      'خرائط مفاهيم',
+      'تعلم ذاتي موجه',
+      'تدريس استقرائي',
+      'ضرب الأمثلة وطرح الأسئلة'
+    ],
+    'التطبيق والتحليل':[
+      'دراسة حالة',
+      'حل المشكلات',
+      'تعلم قائم على السيناريو',
+      'تعلم قائم على الاستقصاء',
+      'تحليل أمثلة ومواقف',
+      'محاكاة',
+      'عرض عملي / نمذجة'
+    ],
+    'المهارات والعمل الجماعي':[
+      'تعلم تعاوني',
+      'تعلم بالأقران',
+      'عمل جماعي موجه',
+      'تعلم قائم على المشاريع',
+      'تعلم قائم على المهمة',
+      'لعب أدوار',
+      'تطبيق عملي'
+    ]
+  };
+  return Object.entries(groups).map(([g,arr])=>
+    `<optgroup label="${g}">${arr.map(x=>`<option ${x===sel?'selected':''}>${x}</option>`).join('')}</optgroup>`
+  ).join('');
+}
+function assessOptions(sel=''){
+  const arr=[
+    'اختبار موضوعي قصير',
+    'سؤال قصير أو مقالي',
+    'مهمة تطبيقية / ورقة عمل',
+    'دراسة حالة / حل مشكلة / سيناريو',
+    'عرض شفهي / تقديمي',
+    'مشروع / بحث',
+    'أداء عملي / محاكاة',
+    'ملاحظة أداء / قائمة تحقق'
+  ];
+  return arr.map(x=>`<option ${x===sel?'selected':''}>${x}</option>`).join('');
+}
+function correctionOptions(sel=''){
+  const arr=['مفتاح إجابة','نموذج إجابة','Rubric / سلم تقدير','قائمة تحقق'];
+  return arr.map(x=>`<option ${x===sel?'selected':''}>${x}</option>`).join('');
+}
+function activityOptions(sel=''){
+  const arr=[
+    'مناقشة موجهة','سؤال تفاعلي','عصف ذهني','خريطة مفاهيم',
+    'تصنيف أمثلة','تحليل حالة','حل مشكلة','نشاط فردي','نشاط جماعي',
+    'محاكاة','عرض قصير','مهمة تطبيقية'
+  ];
+  return arr.map(x=>`<option ${x===sel?'selected':''}>${x}</option>`).join('');
+}
+function outcomeSuggestion(verb){
+  const map={
+    // المعرفة والفهم
+    'يعرّف':{strategy:'محاضرة تفاعلية',activity:'سؤال تفاعلي',assess:'اختبار موضوعي قصير'},
+    'يشرح':{strategy:'حوار ومناقشة',activity:'مناقشة موجهة',assess:'سؤال قصير أو مقالي'},
+    'يوضح':{strategy:'ضرب الأمثلة وطرح الأسئلة',activity:'مناقشة موجهة',assess:'سؤال قصير أو مقالي'},
+    'يصف':{strategy:'محاضرة تفاعلية',activity:'سؤال تفاعلي',assess:'سؤال قصير أو مقالي'},
+    'يحدد':{strategy:'ضرب الأمثلة وطرح الأسئلة',activity:'تصنيف أمثلة',assess:'اختبار موضوعي قصير'},
+    'يميز':{strategy:'ضرب الأمثلة وطرح الأسئلة',activity:'تصنيف أمثلة',assess:'اختبار موضوعي قصير'},
+    'يصنف':{strategy:'خرائط مفاهيم',activity:'تصنيف أمثلة',assess:'مهمة تطبيقية / ورقة عمل'},
+
+    // التطبيق والمهارات
+    'يطبق':{strategy:'دراسة حالة',activity:'تحليل حالة',assess:'دراسة حالة / حل مشكلة / سيناريو'},
+    'يستخدم':{strategy:'عرض عملي / نمذجة',activity:'مهمة تطبيقية',assess:'أداء عملي / محاكاة'},
+    'ينفذ':{strategy:'محاكاة',activity:'محاكاة',assess:'أداء عملي / محاكاة'},
+    'يعد':{strategy:'تعلم قائم على المهمة',activity:'مهمة تطبيقية',assess:'مهمة تطبيقية / ورقة عمل'},
+    'يتقن':{strategy:'تطبيق عملي',activity:'محاكاة',assess:'أداء عملي / محاكاة'},
+    'يقوم بـ':{strategy:'تعلم قائم على المهمة',activity:'مهمة تطبيقية',assess:'أداء عملي / محاكاة'},
+
+    // التحليل والحكم
+    'يحلل':{strategy:'حل المشكلات',activity:'تحليل حالة',assess:'دراسة حالة / حل مشكلة / سيناريو'},
+    'يقارن':{strategy:'تدريس استقرائي',activity:'خريطة مفاهيم',assess:'مهمة تطبيقية / ورقة عمل'},
+    'يقيم':{strategy:'تعلم قائم على الاستقصاء',activity:'حل مشكلة',assess:'دراسة حالة / حل مشكلة / سيناريو'},
+    'يقيّم':{strategy:'تعلم قائم على الاستقصاء',activity:'حل مشكلة',assess:'دراسة حالة / حل مشكلة / سيناريو'},
+    'يختار':{strategy:'تعلم قائم على السيناريو',activity:'حل مشكلة',assess:'مهمة تطبيقية / ورقة عمل'},
+    'يقترح':{strategy:'حل المشكلات',activity:'حل مشكلة',assess:'دراسة حالة / حل مشكلة / سيناريو'},
+
+    // الإنشاء والتطوير
+    'يطور':{strategy:'تعلم قائم على المشاريع',activity:'نشاط جماعي',assess:'مشروع / بحث'},
+    'يصمم':{strategy:'تعلم قائم على المشاريع',activity:'نشاط جماعي',assess:'مشروع / بحث'},
+
+    // القيم والاستقلالية والمسؤولية
+    'يلتزم':{strategy:'تعلم قائم على السيناريو',activity:'مناقشة موجهة',assess:'ملاحظة أداء / قائمة تحقق'},
+    'يبدي':{strategy:'تعلم ذاتي موجه',activity:'نشاط فردي',assess:'ملاحظة أداء / قائمة تحقق'},
+    'يظهر':{strategy:'تعلم تعاوني',activity:'نشاط جماعي',assess:'ملاحظة أداء / قائمة تحقق'}
+  };
+  return map[verb]||{strategy:'محاضرة تفاعلية',activity:'سؤال تفاعلي',assess:'اختبار موضوعي قصير'};
+}
+function correctionForAssessment(a){
+  if(a==='اختبار موضوعي قصير') return 'مفتاح إجابة';
+  if(a==='سؤال قصير أو مقالي') return 'نموذج إجابة';
+  if(a==='ملاحظة أداء / قائمة تحقق' || a==='أداء عملي / محاكاة') return 'قائمة تحقق';
+  return 'Rubric / سلم تقدير';
+}
+function evidenceFor(a){
+  const map={
+    'اختبار موضوعي قصير':'أداة التقييم + مفتاح الإجابة + النتيجة + التغذية الراجعة',
+    'سؤال قصير أو مقالي':'السؤال + نموذج الإجابة + عينة من إجابة الطالب + النتيجة',
+    'مهمة تطبيقية / ورقة عمل':'المهمة/ورقة العمل + مخرج الطالب + سلم التقدير + التغذية الراجعة',
+    'دراسة حالة / حل مشكلة / سيناريو':'الحالة/السيناريو + استجابة الطالب + Rubric + التغذية الراجعة',
+    'عرض شفهي / تقديمي':'العرض + Rubric + سجل التقييم',
+    'مشروع / بحث':'ملف المشروع/البحث + Rubric + النتيجة',
+    'أداء عملي / محاكاة':'سجل الأداء + قائمة التحقق + النتيجة',
+    'ملاحظة أداء / قائمة تحقق':'قائمة التحقق المكتملة + ملاحظة الأداء'
+  };
+  return map[a]||'أداة التقييم + النتيجة + التغذية الراجعة';
+}
+function suggestOutcome(card){
+  const verb=card.querySelector('.lverb').value;
+  const s=outcomeSuggestion(verb);
+  card.querySelector('.lstrategy').value=s.strategy;
+  card.querySelector('.lactivity').value=s.activity;
+  card.querySelector('.lassess').value=s.assess;
+  card.querySelector('.lcorrection').value=correctionForAssessment(s.assess);
+  card.querySelector('.lqualityevidence').value=evidenceFor(s.assess);
+  updateAll();
+}
+function syncAssessment(card){
+  const a=card.querySelector('.lassess').value;
+  card.querySelector('.lcorrection').value=correctionForAssessment(a);
+  card.querySelector('.lqualityevidence').value=evidenceFor(a);
+  updateAll();
+}
+
+function achievementOptions(sel=''){
+  const arr=['يستكمل بعد التنفيذ','تحقق المستهدف','تحقق جزئيًا','لم يتحقق المستهدف'];
+  return arr.map(x=>`<option ${x===sel?'selected':''}>${x}</option>`).join('');
+}
+function addLO(data={}){
+  loN++;
+  const d=document.createElement('div'); d.className='card lo-card';
+  d.innerHTML=`
+  <div class="card-head">
+    <div><span class="badge">ناتج ${loN}</span> <span style="font-size:10px;color:var(--muted)">ابدأ بـ CLO والفعل والمحتوى</span></div>
+    <button class="iconbtn" onclick="this.closest('.lo-card').remove();updateAll()">×</button>
+  </div>
+
+  <div class="grid">
+    <div class="field c3"><label>رمز CLO</label><select class="lcode">${codeOptions(data.code||'')}</select></div>
+    <div class="field c3"><label>الفعل السلوكي</label><select class="lverb">${verbOptions(data.verb||'')}</select></div>
+    <div class="field c6" style="display:flex;align-items:end">
+      <button type="button" class="btn" style="width:100%" onclick="suggestOutcome(this.closest('.lo-card'))">✨ تحديث الاقتراحات تلقائيًا</button>
+    </div>
+
+    <div class="field c12">
+      <label>جزء المحتوى الذي يخدمه هذا الناتج</label>
+      <textarea class="ltopic" style="min-height:70px" placeholder="مثال: تصنيف المخاطر حسب طبيعتها">${data.topic||''}</textarea>
+    </div>
+
+    <div class="field c6"><label>استراتيجية التدريس <span style="font-weight:400;color:var(--teal)">— مقترحة تلقائيًا</span></label>
+      <select class="lstrategy">${strategyOptions(data.strategy||'')}</select>
+    </div>
+    <div class="field c6"><label>نشاط الطالب <span style="font-weight:400;color:var(--teal)">— مقترح تلقائيًا</span></label>
+      <select class="lactivity">${activityOptions(data.activity||'')}</select>
+    </div>
+
+    <div class="field c6"><label>فئة التقويم <span style="font-weight:400;color:var(--teal)">— مختصرة</span></label>
+      <select class="lassess">${assessOptions(data.assess||'')}</select>
+    </div>
+    <div class="field c6"><label>المستهدف</label>
+      <select class="ltarget">
+        <option>70%</option><option selected>80%</option><option>85%</option><option>90%</option><option>تحقيق 3 من 4 معايير</option>
+      </select>
+    </div>
+  </div>
+
+  <details class="quality-only" style="margin-top:10px">
+    <summary style="cursor:pointer;font-weight:800;color:var(--navy)">تفاصيل الجودة — تفتح عند الحاجة فقط</summary>
+    <div class="grid" style="margin-top:12px">
+      <div class="field c4"><label>أداة التصحيح/الحكم</label><select class="lcorrection">${correctionOptions(data.correction||'')}</select></div>
+      <div class="field c8"><label>دليل الجودة الخاص بالناتج <span style="font-weight:400;color:var(--teal)">— يُنشأ تلقائيًا</span></label>
+        <input class="lqualityevidence" value="${data.qualityEvidence||''}" placeholder="يُملأ تلقائيًا ويمكن تعديله">
+      </div>
+      <div class="field c12">
+        <label>السؤال / المهمة الفعلية <span style="font-weight:400;color:var(--muted)">(اختياري إذا كان التحقق ضمن النشاط نفسه)</span></label>
+        <textarea class="ltask" style="min-height:65px" placeholder="مثال: صنّف الحالات الآتية حسب نوع الخطر.">${data.task||''}</textarea>
+      </div>
+    </div>
+  </details>
+
+  <details class="post-exec" style="margin-top:10px">
+    <summary>بعد تنفيذ الدرس: النتائج والتحسين</summary>
+    <div class="grid" style="margin-top:10px">
+      <div class="field c4"><label>النتيجة الفعلية</label><input class="lactual" placeholder="مثال: 84%" value="${data.actualResult||''}"></div>
+      <div class="field c4"><label>حالة تحقيق المستهدف</label><select class="lachievement">${achievementOptions(data.achievement||'')}</select></div>
+      <div class="field c4"><label>الدليل محفوظ؟</label><select class="levidenceSaved"><option>يستكمل بعد التنفيذ</option><option>نعم</option><option>جزئيًا</option><option>لا</option></select></div>
+      <div class="field c12"><label>تحليل النتيجة / الفجوة</label><textarea class="lanalysis" style="min-height:60px" placeholder="اختياري عند الحاجة">${data.analysis||''}</textarea></div>
+      <div class="field c6"><label>إجراء التحسين</label><textarea class="limprovement" style="min-height:60px" placeholder="اختياري">${data.improvement||''}</textarea></div>
+      <div class="field c6"><label>إعادة القياس / الأثر</label><textarea class="lremeasure" style="min-height:60px" placeholder="يستكمل لاحقًا عند توفره">${data.remeasure||''}</textarea></div>
+    </div>
+  </details>
+
+  <div class="preview lpreview"></div>`;
+
+  $('loList').appendChild(d);
+
+  if(data.target) d.querySelector('.ltarget').value=data.target;
+  if(data.achievement) d.querySelector('.lachievement').value=data.achievement;
+  if(data.evidenceSaved) d.querySelector('.levidenceSaved').value=data.evidenceSaved;
+
+  if(!data.strategy && !data.activity && !data.assess){
+    suggestOutcome(d);
+  }else{
+    if(data.strategy) d.querySelector('.lstrategy').value=data.strategy;
+    if(data.activity) d.querySelector('.lactivity').value=data.activity;
+    if(data.assess) d.querySelector('.lassess').value=data.assess;
+    if(data.correction) d.querySelector('.lcorrection').value=data.correction;
+    if(data.qualityEvidence) d.querySelector('.lqualityevidence').value=data.qualityEvidence;
+  }
+
+  d.querySelector('.lverb').addEventListener('change',()=>suggestOutcome(d));
+  d.querySelector('.lassess').addEventListener('change',()=>syncAssessment(d));
+  d.querySelectorAll('input,select,textarea').forEach(e=>e.addEventListener('input',updateAll));
+  updateAll();
+}
+function getLOs(){
+  return [...document.querySelectorAll('.lo-card')].map((c,i)=>({
+    n:i+1,
+    code:c.querySelector('.lcode').value,
+    verb:c.querySelector('.lverb').value,
+    topic:c.querySelector('.ltopic').value.trim(),
+    strategy:c.querySelector('.lstrategy').value,
+    activity:c.querySelector('.lactivity').value,
+    assess:c.querySelector('.lassess').value,
+    target:c.querySelector('.ltarget').value,
+    correction:c.querySelector('.lcorrection').value,
+    task:c.querySelector('.ltask').value.trim(),
+    qualityEvidence:c.querySelector('.lqualityevidence').value.trim(),
+    actualResult:c.querySelector('.lactual').value.trim(),
+    achievement:c.querySelector('.lachievement').value,
+    evidenceSaved:c.querySelector('.levidenceSaved').value,
+    analysis:c.querySelector('.lanalysis').value.trim(),
+    improvement:c.querySelector('.limprovement').value.trim(),
+    remeasure:c.querySelector('.lremeasure').value.trim()
+  }));
+}
+function updatePreviews(){
+  document.querySelectorAll('.lo-card').forEach(c=>{
+    const code=c.querySelector('.lcode').value,verb=c.querySelector('.lverb').value,topic=c.querySelector('.ltopic').value.trim();
+    c.querySelector('.lpreview').innerHTML=`<b>${code}</b> — أن <b>${verb}</b> الطالب ${topic||'<span style="color:#8A94A7">[موضوع الناتج]</span>'}.`;
+  });
+}
+
+function clearActivities(){
+  $('actList').innerHTML='';
+  actN=0;
+}
+function applyPlanTemplate(){
+  clearActivities();
+  const d=Number(val('duration')||180);
+
+  let rows=[];
+  if(d===60){
+    $('breakMode').value='0';
+    rows=[
+      ['تحضير الطلاب / حضور وغياب','تسجيل الحضور والغياب','Teams',5],
+      ['تهيئة','سؤال افتتاحي','Teams',5],
+      ['شرح/بناء المفهوم','شرح تفاعلي','Teams',20],
+      ['تطبيق','نشاط فردي','Whiteboard',15],
+      ['تقويم تكويني','اختبار قصير','Microsoft Forms',10],
+      ['إغلاق/تقويم ختامي','Exit Ticket','Microsoft Forms',5]
+    ];
+  }else if(d===120){
+    $('breakMode').value='flex';
+    rows=[
+      ['تحضير الطلاب / حضور وغياب','تسجيل الحضور والغياب','Teams',10],
+      ['تهيئة','سؤال افتتاحي','Teams',10],
+      ['شرح/بناء المفهوم','شرح تفاعلي','Teams',30],
+      ['تطبيق','نشاط جماعي','Whiteboard',25],
+      ['تقويم تكويني','اختبار قصير','Microsoft Forms',10],
+      ['إغلاق/تقويم ختامي','Exit Ticket','Microsoft Forms',5]
+    ];
+  }else if(d===180){
+    $('breakMode').value='flex';
+    rows=[
+      ['تحضير الطلاب / حضور وغياب','تسجيل الحضور والغياب','Teams',10],
+      ['تهيئة','سؤال افتتاحي','Teams',10],
+      ['شرح/بناء المفهوم','شرح تفاعلي','Teams',40],
+      ['تطبيق','نشاط جماعي','Whiteboard',30],
+      ['مناقشة','تحليل حالة','Teams',25],
+      ['تقويم تكويني','اختبار قصير','Microsoft Forms',20],
+      ['إغلاق/تقويم ختامي','Exit Ticket','Microsoft Forms',15]
+    ];
+  }else if(d===240){
+    $('breakMode').value='flex';
+    rows=[
+      ['تحضير الطلاب / حضور وغياب','تسجيل الحضور والغياب','Teams',10],
+      ['تهيئة','سؤال افتتاحي','Teams',10],
+      ['شرح/بناء المفهوم','شرح تفاعلي','Teams',60],
+      ['تطبيق','نشاط جماعي','Whiteboard',40],
+      ['مناقشة','تحليل حالة','Teams',30],
+      ['تقويم تكويني','اختبار قصير','Microsoft Forms',30],
+      ['إغلاق/تقويم ختامي','Exit Ticket','Microsoft Forms',30]
+    ];
+  }else{
+    $('breakMode').value='flex';
+    rows=[
+      ['تحضير الطلاب / حضور وغياب','تسجيل الحضور والغياب','Teams',10],
+      ['تهيئة','سؤال افتتاحي','Teams',15],
+      ['شرح/بناء المفهوم','شرح تفاعلي','Teams',75],
+      ['تطبيق','نشاط جماعي','Whiteboard',60],
+      ['مناقشة','تحليل حالة','Teams',40],
+      ['تقويم تكويني','اختبار قصير','Microsoft Forms',40],
+      ['إغلاق/تقويم ختامي','Exit Ticket','Microsoft Forms',30]
+    ];
+  }
+  rows.forEach(([stage,type,tool,min])=>addActivity({stage,type,tool,min}));
+  toggleBreakCustom();
+  updateAll();
+}
+
+function addActivity(data={}){
+  actN++;
+  const d=document.createElement('div'); d.className='card act-card';
+  d.innerHTML=`
+  <div class="card-head"><span class="badge">مرحلة ${actN}</span><button class="iconbtn" onclick="this.closest('.act-card').remove();updateAll()">×</button></div>
+  <div class="grid">
+    <div class="field c3"><label>المرحلة</label><select class="astage"><option>تحضير الطلاب / حضور وغياب</option><option>تهيئة</option><option>شرح/بناء المفهوم</option><option>تطبيق</option><option>مناقشة</option><option>تقويم تكويني</option><option>إغلاق/تقويم ختامي</option></select></div>
+    <div class="field c3"><label>النشاط</label><select class="atype"><option>تسجيل الحضور والغياب</option><option>سؤال افتتاحي</option><option>شرح تفاعلي</option><option>مناقشة موجهة</option><option>عصف ذهني</option><option>خريطة مفاهيم</option><option>تصنيف أمثلة</option><option>تحليل حالة</option><option>حل مشكلة</option><option>نشاط فردي</option><option>نشاط جماعي</option><option>محاكاة</option><option>تصويت</option><option>Exit Ticket</option><option>اختبار قصير</option></select></div>
+    <div class="field c3"><label>المنصة/الأداة</label><select class="atool"><option>Teams</option><option>LMS</option><option>Microsoft Forms</option><option>Whiteboard</option><option>Canva</option><option>بدون أداة</option></select></div>
+    <div class="field c3"><label>الدقائق</label><select class="amin">${[5,10,15,20,25,30,40,45,60,75,90,120].map(x=>`<option ${String(x)==String(data.min||'')?'selected':''}>${x}</option>`).join('')}</select></div>
+  </div>`;
+  $('actList').appendChild(d);
+  if(data.stage) d.querySelector('.astage').value=data.stage;
+  if(data.type) d.querySelector('.atype').value=data.type;
+  if(data.tool) d.querySelector('.atool').value=data.tool;
+  d.querySelectorAll('select').forEach(e=>e.addEventListener('input',updateAll));
+  updateAll();
+}
+function getActs(){
+  return [...document.querySelectorAll('.act-card')].map((c,i)=>({n:i+1,stage:c.querySelector('.astage').value,type:c.querySelector('.atype').value,tool:c.querySelector('.atool').value,min:Number(c.querySelector('.amin').value)}));
+}
+
+function getBreakMinutes(){
+  return val('breakMode') && val('breakMode')!=='0' ? 30 : 0;
+}
+function getBreakLabel(){
+  const m=val('breakMode');
+  const labels={
+    '0':'بدون استراحة',
+    'single':'30 دقيقة متصلة',
+    '3x10':'3 استراحات × 10 دقائق',
+    '2x15':'استراحتان × 15 دقيقة',
+    'flex':'توزيع مرن بإجمالي 30 دقيقة'
+  };
+  if(m==='flex' && val('breakCustom')) return `${labels[m]} — ${val('breakCustom')}`;
+  return labels[m]||'بدون استراحة';
+}
+function toggleBreakCustom(){
+  const w=$('breakCustomWrap');
+  if(w) w.classList.toggle('hidden', val('breakMode')!=='flex');
+}
+function updateAttendance(){
+  const total=Math.max(0,Number(val('studentsTotal')||0));
+  const present=Math.max(0,Number(val('studentsPresent')||0));
+  const absent=Math.max(0,total-present);
+  if($('studentsAbsent')) $('studentsAbsent').value=absent||0;
+  if($('attendanceRate')) $('attendanceRate').value=total?Math.round((present/total)*100)+'%':'0%';
+}
+
+function updateTime(){
+  const activityMins=getActs().reduce((s,a)=>s+a.min,0);
+  const breakMins=getBreakMinutes();
+  const total=activityMins+breakMins;
+  const d=Number(val('duration')||0), diff=d-total;
+  $('mins').textContent=total;
+  $('diff').textContent=(diff>0?'+':'')+diff;
+  $('diff').style.color=diff===0?'var(--ok)':Math.abs(diff)<=10?'var(--warn)':'var(--danger)';
+}
+function qualityEvaluation(){
+  const los=getLOs(), acts=getActs(), duration=Number(val('duration')||0);
+  const activityMins=acts.reduce((s,a)=>s+a.min,0);
+  const breakMins=getBreakMinutes();
+  const totalMins=activityMins+breakMins;
+
+  const checks=[
+    {key:'basic',title:'اكتمال بيانات الدرس',ok:!!(val('course')&&val('week')&&val('title')&&val('instructor')),
+     note:'اسم المقرر والأسبوع وعنوان الدرس وعضو هيئة التدريس مكتملة.'},
+    {key:'lo',title:'ربط نواتج التعلم بالتوصيف',ok:los.length>0 && los.every(x=>x.code&&x.topic),
+     note:'كل ناتج يحتوي رمزًا من التوصيف وموضوعًا محددًا.'},
+    {key:'measurable',title:'قابلية قياس نواتج التعلم',ok:los.length>0 && los.every(x=>x.verb&&x.assess),
+     note:'كل ناتج يحتوي فعلًا قابلًا للقياس وأداة تقييم مرتبطة.'},
+    {key:'strategy',title:'مواءمة استراتيجية التدريس',ok:los.length>0 && los.every(x=>x.strategy),
+     note:'تم تحديد استراتيجية تدريس لكل ناتج.'},
+    {key:'activity',title:'وجود نشاط تعلم مرتبط',ok:los.length>0 && los.every(x=>x.activity),
+     note:'كل ناتج مرتبط بنشاط يتيح للطالب ممارسة السلوك المطلوب.'},
+    {key:'correction',title:'وجود أداة تصحيح أو حكم',ok:los.length>0 && los.every(x=>x.correction),
+     note:'تم تحديد مفتاح إجابة أو نموذج إجابة أو سلم/معيار مناسب.'},
+    {key:'qualityEvidence',title:'تحديد دليل جودة لكل ناتج',ok:los.length>0 && los.every(x=>x.qualityEvidence),
+     note:'تم تحديد دليل جودة لكل ناتج، ويُنشأ تلقائيًا ويمكن تعديله.'},
+    {key:'target',title:'وجود مستهدف أداء',ok:los.length>0 && los.every(x=>x.target),
+     note:'تم تحديد مستهدف لكل ناتج.'},
+    {key:'time',title:'اتساق الزمن مع مدة الدرس',ok:acts.length>=3 && totalMins===duration,
+     note:`إجمالي الزمن المخطط ${totalMins} دقيقة، ويشمل ${breakMins} دقيقة استراحة عند اختيارها، مقابل مدة الدرس ${formatDuration(duration)}.`},
+    {key:'evidence',title:'تحديد التوثيق وحفظ الأدلة',ok:!!val('store'),
+     note:'تم تحديد مكان حفظ الدليل.'},
+    {key:'feedback',title:'تحديد آلية التغذية الراجعة',ok:!!val('feedback'),
+     note:'تم تحديد آلية التغذية الراجعة.'},
+    {key:'resource',title:'تحديد مصدر التعلم',ok:!!val('resource'),
+     note:'تم تحديد مصدر تعلم رئيسي.'}
+  ];
+
+  const score=Math.round(checks.filter(x=>x.ok).length/checks.length*100);
+  let status='غير جاهز';
+  let recommendation='تحتاج الخطة إلى استكمال العناصر الأساسية قبل الاعتماد.';
+  if(score>=90){
+    status='جاهز قبل التنفيذ';
+    recommendation='الخطة مستوفية لعناصر التخطيط والمواءمة قبل التنفيذ.';
+  }else if(score>=70){
+    status='استكمال بسيط';
+    recommendation='الخطة جيدة وتحتاج إلى استكمال العناصر غير المستوفاة قبل التنفيذ.';
+  }
+  return {checks,score,status,recommendation,totalMins,activityMins,breakMins,duration};
+}
+function score(){
+  const q=qualityEvaluation(), p=q.score;
+  $('scoreText').textContent=p+'%';$('scoreBar').style.width=p+'%';
+  if($('autoQualityScore')) $('autoQualityScore').textContent=p+'%';
+  if($('autoQualityStatus')) $('autoQualityStatus').textContent=q.status;
+  return p;
+}
+function autoSaveDraft(){
+  try{
+    const s={fields:{},los:getLOs(),acts:getActs()};
+    ['program','course','week','duration','title','instructor','prior','resource','store','feedback','breakMode','breakCustom','studentsTotal','studentsPresent','attendanceMethod','attendanceNote'].forEach(id=>{if($(id))s.fields[id]=val(id)});
+    localStorage.setItem('lessonPlannerAutoDraft',JSON.stringify(s));
+  }catch(e){}
+}
+function updateAll(){updatePreviews();updateTime();score();autoSaveDraft()}
+function formatDuration(mins){
+  const n=Number(mins||0);
+  if(n===60) return 'ساعة واحدة';
+  if(n===120) return 'ساعتان';
+  if(n===180) return '3 ساعات';
+  if(n===240) return '4 ساعات';
+  if(n===300) return '5 ساعات';
+  return n+' دقيقة';
+}
+
+function meta(){
+  return `<div class="meta">
+    <div><b>البرنامج</b><span>${val('program')||'—'}</span></div><div><b>المقرر</b><span>${val('course')||'—'}</span></div>
+    <div><b>الأسبوع</b><span>${val('week')||'—'}</span></div><div><b>مدة الدرس</b><span>${formatDuration(val('duration'))}</span></div>
+    <div><b>عضو هيئة التدريس</b><span>${val('instructor')||'—'}</span></div>
+  </div>`;
+}
+function render(){
+  const los=getLOs(), acts=getActs(), q=qualityEvaluation();
+  const today=new Date().toLocaleDateString('ar-SA');
+  const missing=q.checks.filter(x=>!x.ok);
+  $('outTitle').textContent=val('title')||'خطة الدرس للطالب';
+
+  const brand=``;
+
+  const outcomeRows=los.length ? los.map(x=>`
+    <tr>
+      <td>${x.code}</td>
+      <td>أن ${x.verb} الطالب ${x.topic||'—'}.</td>
+      <td>${x.activity}</td>
+      <td>${x.assess}</td>
+      <td>${x.target}</td>
+    </tr>`).join('') :
+    `<tr><td colspan="5">لم تتم إضافة نواتج تعلم بعد.</td></tr>`;
+
+  const planRows=acts.length ? acts.map(a=>`
+    <tr><td>${a.stage}</td><td>${a.type}</td><td>${a.tool}</td><td>${a.min} دقيقة</td></tr>`).join('') :
+    `<tr><td colspan="4">لم تتم إضافة مراحل تنفيذ بعد.</td></tr>`;
+
+  const breakRow=getBreakMinutes()
+    ? `<tr><td>استراحة</td><td>${getBreakLabel()}</td><td>—</td><td>30 دقيقة</td></tr>`
+    : '';
+
+  $('studentOutputBody').innerHTML=`
+    ${brand}
+    <div class="print-block avoid-break">${meta()}</div>
+
+    <div class="print-block">
+      <h3>نواتج تعلم الدرس</h3>
+      <table>
+        <thead><tr><th>الرمز</th><th>الناتج</th><th>النشاط</th><th>التقويم</th><th>المستهدف</th></tr></thead>
+        <tbody>${outcomeRows}</tbody>
+      </table>
+    </div>
+
+    <div class="print-block">
+      <h3>خطة تنفيذ الجلسة</h3>
+      <table>
+        <thead><tr><th>المرحلة</th><th>النشاط</th><th>الأداة/المنصة</th><th>الوقت</th></tr></thead>
+        <tbody>${planRows}${breakRow}</tbody>
+      </table>
+    </div>
+
+    <div class="print-block avoid-break">
+      <h3>التعلم والتغذية الراجعة</h3>
+      <div class="meta">
+        <div><b>مصدر التعلم الرئيسي</b><span>${val('resource')||'—'}</span></div>
+        <div><b>التغذية الراجعة</b><span>${val('feedback')||'—'}</span></div>
+        <div><b>إجمالي الزمن المخطط</b><span>${q.totalMins} دقيقة</span></div>
+      </div>
+    </div>
+
+    <div class="note print-block">
+      هذا الملف مخصص للطالب، ويركز على ما سيتعلمه، وكيف ستسير الجلسة، وما الأنشطة وأساليب التقويم المرتبطة بها.
+    </div>
+
+    <div class="rights">
+      <strong>إعداد وتصميم: نور أحمد الزهراني</strong><br>
+      <span>جميع حقوق تصميم وإعداد الأداة محفوظة.</span>
+    </div>`;
+
+  const alignmentCards=los.length ? los.map(x=>`
+    <div class="q-outcome-card">
+      <div class="q-outcome-head"><strong>${x.code} - ${x.verb} ${x.topic||'—'}</strong><span class="badge">${x.target||'—'}</span></div>
+      <div class="q-mini-grid">
+        <div class="q-item w6"><b>عنصر المحتوى</b><span>${x.topic||'—'}</span></div>
+        <div class="q-item"><b>الفعل</b><span>${x.verb||'—'}</span></div>
+        <div class="q-item"><b>المستهدف</b><span>${x.target||'—'}</span></div>
+        <div class="q-item w6"><b>استراتيجية التدريس</b><span>${x.strategy||'—'}</span></div>
+        <div class="q-item w6"><b>نشاط الطالب</b><span>${x.activity||'—'}</span></div>
+        <div class="q-item w6"><b>أداة التقويم</b><span>${x.assess||'—'}</span></div>
+        <div class="q-item w6"><b>أداة التصحيح/الحكم</b><span>${x.correction||'—'}</span></div>
+        <div class="q-item w12"><b>السؤال/المهمة إن وجدت</b><span>${x.task||'—'}</span></div>
+        <div class="q-item w12"><b>دليل الجودة الخاص بالناتج</b><span>${x.qualityEvidence||'—'}</span></div>
+      </div>
+    </div>`).join('') : `<div class="note">لم تتم إضافة نواتج تعلم بعد.</div>`;
+
+  const postExecutionRows=los.length ? los.map(x=>`
+    <tr>
+      <td>${x.code}</td>
+      <td>${x.target||'—'}</td>
+      <td>${x.actualResult||'يستكمل بعد التنفيذ'}</td>
+      <td>${x.achievement||'يستكمل بعد التنفيذ'}</td>
+      <td>${x.evidenceSaved||'يستكمل بعد التنفيذ'}</td>
+      <td>${x.analysis||'يستكمل بعد التنفيذ'}</td>
+      <td>${x.improvement||'—'}</td>
+      <td>${x.remeasure||'—'}</td>
+    </tr>`).join('') :
+    `<tr><td colspan="8">لم تتم إضافة نواتج تعلم بعد.</td></tr>`;
+
+  const qualityPlanRows=acts.length ? acts.map(a=>`
+    <tr><td>${a.stage}</td><td>${a.type}</td><td>${a.tool}</td><td>${a.min} دقيقة</td></tr>`).join('') :
+    `<tr><td colspan="4">لم تتم إضافة مراحل تنفيذ بعد.</td></tr>`;
+
+  $('qualityOutputBody').innerHTML=`
+    ${brand}
+    <div class="print-block avoid-break">${meta()}</div>
+
+    <div class="kpis avoid-break">
+      <div class="kpi"><b>${q.score}%</b><span>استيفاء ما قبل التنفيذ</span></div>
+      <div class="kpi"><b>${q.status}</b><span>حالة الخطة</span></div>
+      <div class="kpi"><b>${q.totalMins}</b><span>إجمالي الدقائق</span></div>
+      <div class="kpi"><b>${today}</b><span>تاريخ التقرير</span></div>
+    </div>
+
+    <div class="print-block">
+      <h3>مواءمة نواتج التعلم والتدريس والتقويم</h3>
+      ${alignmentCards}
+    </div>
+
+    <div class="print-block">
+      <h3>خطة التنفيذ والزمن</h3>
+      <table>
+        <thead><tr><th>المرحلة</th><th>النشاط</th><th>الأداة</th><th>الوقت</th></tr></thead>
+        <tbody>${qualityPlanRows}${breakRow}</tbody>
+      </table>
+    </div>
+
+    <div class="print-block avoid-break">
+      <h3>التوثيق والتحضير</h3>
+      <div class="meta">
+        <div><b>حفظ الأدلة</b><span>${val('store')||'—'}</span></div>
+        <div><b>التغذية الراجعة</b><span>${val('feedback')||'—'}</span></div>
+        <div><b>مصدر التعلم</b><span>${val('resource')||'—'}</span></div>
+        <div><b>المسجلون</b><span>${val('studentsTotal')||'—'}</span></div>
+        <div><b>الحضور</b><span>${val('studentsPresent')||'—'}</span></div>
+        <div><b>الغياب</b><span>${val('studentsAbsent')||'—'}</span></div>
+        <div><b>نسبة الحضور</b><span>${val('attendanceRate')||'—'}</span></div>
+        <div><b>طريقة التحضير</b><span>${val('attendanceMethod')||'—'}</span></div>
+        <div><b>الاستراحة</b><span>${getBreakLabel()}</span></div>
+      </div>
+      ${val('attendanceNote')?`<div class="note" style="margin-top:5px"><strong>ملاحظة التحضير:</strong> ${val('attendanceNote')}</div>`:''}
+    </div>
+
+    <div class="print-block">
+      <h3>متابعة تحقيق نواتج التعلم بعد التنفيذ</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>CLO</th><th>المستهدف</th><th>النتيجة الفعلية</th><th>حالة التحقيق</th>
+            <th>الدليل محفوظ؟</th><th>تحليل النتيجة/الفجوة</th><th>إجراء التحسين</th><th>إعادة القياس/الأثر</th>
+          </tr>
+        </thead>
+        <tbody>${postExecutionRows}</tbody>
+      </table>
+      <div class="note" style="margin-top:5px">
+        هذا الجزء يُستكمل بعد تنفيذ الدرس وظهور نتائج التقويم، ولا يدخل في نسبة اكتمال الخطة قبل التنفيذ.
+      </div>
+    </div>
+
+    <div class="print-block">
+      <h3>متطلبات الجودة والاستيفاء الآلي</h3>
+      <table>
+        <thead><tr><th>المتطلب</th><th>الحالة</th><th>النتيجة الآلية</th></tr></thead>
+        <tbody>
+          ${q.checks.map(x=>`<tr>
+            <td>${x.title}</td>
+            <td style="font-weight:700;color:${x.ok?'var(--ok)':'var(--danger)'}">${x.ok?'مستوفى':'غير مستوفى'}</td>
+            <td>${x.note}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="print-block avoid-break">
+      <h3>التوصية الآلية</h3>
+      <div class="${q.score>=90?'preview':'note'}">
+        <strong>${q.status}</strong><br>${q.recommendation}
+      </div>
+      ${missing.length?`
+        <div class="note" style="margin-top:5px">
+          <strong>العناصر المطلوب استكمالها:</strong>
+          <ul>${missing.map(x=>`<li>${x.title}</li>`).join('')}</ul>
+        </div>`:''}
+    </div>
+
+    <div class="print-block avoid-break">
+      <h3>بيانات الاعتماد</h3>
+      <div class="meta">
+        <div><b>مُعد الخطة</b><span>${val('instructor')||'—'}</span></div>
+        <div><b>الحالة</b><span>${q.status}</span></div>
+        <div><b>تاريخ التقرير</b><span>${today}</span></div>
+        <div><b>البرنامج</b><span>${val('program')||'—'}</span></div>
+      </div>
+    </div>
+
+    <div class="rights">
+      <strong>إعداد وتصميم: نور أحمد الزهراني</strong><br>
+      <span>جميع حقوق تصميم وإعداد الأداة محفوظة.</span>
+    </div>`;
+}
+function copyText(){
+  copyStudentText();
+}
+function copyStudentText(){
+  render();
+  const t=$('studentOutputBody').innerText;
+  navigator.clipboard?.writeText(t);
+  alert('تم نسخ ملف الطالب');
+}
+function safeFilePart(s){
+  return String(s||'').trim().replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,'_') || 'بدون_اسم';
+}
+
+function isRestrictedPreview(){
+  try{
+    const p=location.protocol;
+    return window.self!==window.top || !['http:','https:','file:'].includes(p);
+  }catch(e){
+    return true;
+  }
+}
+
+function validateBeforeExport(mode){
+  const missing=[];
+  if(!val('program')) missing.push('البرنامج / الدبلوم');
+  if(!val('course')) missing.push('المقرر');
+  if(!val('week')) missing.push('الأسبوع');
+  if(!val('title')) missing.push('عنوان الدرس');
+  if(!val('instructor')) missing.push('عضو/عضوة هيئة التدريس');
+  if(getLOs().length===0) missing.push('ناتج تعلم واحد على الأقل');
+  if(getActs().length===0) missing.push('خطة تنفيذ الجلسة');
+  if(missing.length){
+    alert('لا يمكن إنشاء ملف PDF فارغ أو غير مكتمل. يرجى استكمال:\n- '+missing.join('\n- '));
+    return false;
+  }
+  return true;
+}
+async function exportPdfDocument(mode){
+  render();
+  if(!validateBeforeExport(mode)) return;
+
+  const course=safeFilePart(val('course')||'المقرر');
+  const week=safeFilePart(val('week')||'');
+  const lesson=safeFilePart(val('title')||'عنوان_الدرس');
+  const filename=`${course}_${week}_${lesson}_${mode==='student'?'خطة_الطالب':'متطلبات_الجودة'}.pdf`;
+  const source=$(mode==='student'?'studentDocument':'qualityDocument');
+  if(!source){ alert('تعذر العثور على محتوى الملف.'); return; }
+
+  // Clone only the requested document so the sidebar/application never affects the PDF width.
+  const host=document.createElement('div');
+  host.className='pdf-export-host';
+  const clone=source.cloneNode(true);
+  clone.removeAttribute('id');
+  clone.style.display='block';
+  host.appendChild(clone);
+  document.body.appendChild(host);
+
+  // Give data-URI logo and layout one frame to settle before capture.
+  await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+
+  try{
+    if(typeof window.html2pdf!=='function'){
+      throw new Error('PDF_LIBRARY_NOT_READY');
+    }
+    const opt={
+      margin:[7,8,7,8],
+      filename,
+      image:{type:'jpeg',quality:0.98},
+      html2canvas:{scale:1.7,useCORS:true,logging:false,backgroundColor:'#ffffff',scrollX:0,scrollY:0},
+      jsPDF:{unit:'mm',format:'a4',orientation:'portrait',compress:true},
+      pagebreak:{mode:['css','legacy'],avoid:['tr','.q-outcome-card','.doc-brand','.avoid-break']}
+    };
+    await window.html2pdf().set(opt).from(clone).save();
+  }catch(err){
+    console.error(err);
+    // Reliable fallback: open the native print dialog only if direct-download library failed.
+    alert('تعذر التنزيل المباشر للـ PDF. سأفتح نافذة الطباعة؛ اختاري «حفظ بصيغة PDF».');
+    document.body.classList.remove('print-student','print-quality');
+    document.body.classList.add(mode==='student'?'print-student':'print-quality');
+    const oldTitle=document.title;
+    document.title=filename.replace(/\.pdf$/,'');
+    setTimeout(()=>{
+      window.print();
+      document.body.classList.remove('print-student','print-quality');
+      document.title=oldTitle;
+    },100);
+  }finally{
+    host.remove();
+  }
+}
+function printStudent(){return exportPdfDocument('student')}
+function printQuality(){return exportPdfDocument('quality')}
+function printResult(){return printStudent()}
+
+function saveDraft(){
+  const s={fields:{},los:getLOs(),acts:getActs()};
+  ['program','course','week','duration','title','instructor','prior','resource',
+   'store','feedback','breakMode','breakCustom','studentsTotal','studentsPresent',
+   'attendanceMethod','attendanceNote'].forEach(id=>s.fields[id]=val(id));
+  localStorage.setItem('lessonPlannerLite',JSON.stringify(s));
+  alert('تم حفظ المسودة');
+}
+
+function loadAutoDraft(){
+  const s=JSON.parse(localStorage.getItem('lessonPlannerAutoDraft')||'null');
+  if(!s){alert('لا توجد تعبئة محفوظة تلقائيًا على هذا الجهاز.');return;}
+  Object.entries(s.fields||{}).forEach(([k,v])=>{if($(k))$(k).value=v});
+  $('loList').innerHTML='';$('actList').innerHTML='';loN=0;actN=0;
+  (s.los||[]).forEach(addLO);(s.acts||[]).forEach(addActivity);
+  toggleBreakCustom();updateAttendance();updateAll();
+  alert('تمت استعادة آخر تعبئة محفوظة تلقائيًا.');
+}
+function loadDraft(){
+  const s=JSON.parse(localStorage.getItem('lessonPlannerLite')||'null');if(!s)return;
+  Object.entries(s.fields||{}).forEach(([k,v])=>{if($(k))$(k).value=v});
+  $('loList').innerHTML='';$('actList').innerHTML='';loN=0;actN=0;
+  (s.los||[]).forEach(addLO);(s.acts||[]).forEach(addActivity);
+  toggleBreakCustom();updateAttendance();updateAll();
+}
+document.querySelectorAll('input,select,textarea').forEach(e=>e.addEventListener('input',updateAll));
+if(localStorage.getItem('lessonPlannerGuideHidden')==='1'){
+  $('guideBody')?.classList.add('hidden');
+  if($('guideToggle')) $('guideToggle').textContent='إظهار طريقة الاستخدام';
+}
+toggleBreakCustom();updateAttendance();updateAll();
+</script>
+</body>
+</html>
